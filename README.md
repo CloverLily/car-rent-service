@@ -1,2 +1,2 @@
-# car-rent-service
-This is a project demo of car rental service.
+# Car Rental Service
+### This is a project demo of car rental service.
