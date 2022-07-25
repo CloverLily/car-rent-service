@@ -3,7 +3,6 @@ package com.lily.demo.rental;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 /**
  * @author lily
@@ -12,7 +11,6 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  */
 @MapperScan(value = {"com.lily.demo.rental.dao"})
 @SpringBootApplication
-@EnableAspectJAutoProxy(proxyTargetClass = true, exposeProxy = true)
 public class RentalServerApplication {
 
     public static void main(String[] args) {
