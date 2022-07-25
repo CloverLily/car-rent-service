@@ -20,7 +20,7 @@ import javax.annotation.Resource;
  */
 @Slf4j
 @RestController
-@RequestMapping("/car/rental/")
+@RequestMapping("/car/rental")
 public class CarRentalController {
 
     @Resource

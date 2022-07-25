@@ -48,9 +48,9 @@ public class OrderDO extends Model<OrderDO> {
      */
     private Integer rentAmount;
     /**
-     * 汽车id
+     * 用户id
      *
-     * @see CarDO#getId()
+     * @see UserDO#getId()
      */
     private Long userId;
     /**
