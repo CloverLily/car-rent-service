@@ -1,5 +1,6 @@
 package com.lily.demo.rental.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.lily.demo.rental.common.enums.ResultMessageEnum;
 import com.lily.demo.rental.model.bo.CarBO;
 import com.lily.demo.rental.model.entity.CarDO;
@@ -7,7 +8,7 @@ import com.lily.demo.rental.model.vo.OrderRequest;
 import com.lily.demo.rental.model.vo.RentalResult;
 import com.lily.demo.rental.service.CarRentalService;
 import com.lily.demo.rental.service.CarService;
-import com.lily.demo.rental.service.OrderService;
+import com.lily.demo.rental.service.RentalOrderService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.aop.framework.AopContext;
 import org.springframework.stereotype.Service;
@@ -29,7 +30,7 @@ public class CarRentalServiceImpl implements CarRentalService {
     @Resource
     private CarService carService;
     @Resource
-    private OrderService orderService;
+    private RentalOrderService orderService;
 
     @Override
     public RentalResult<CarDO> searchAvailableCar() {
@@ -63,6 +64,7 @@ public class CarRentalServiceImpl implements CarRentalService {
         }
 
         if (!carService.updateByCriteria(buildCarBO(request, carDO))) {
+            log.warn("更新汽车数量失败, 汽车信息:{}", JSON.toJSON(carDO));
             return RentalResult.fail(ResultMessageEnum.REQUEST_FAIL.getDesc());
         }
 
@@ -71,6 +73,7 @@ public class CarRentalServiceImpl implements CarRentalService {
             return RentalResult.success(ResultMessageEnum.REQUEST_SUCCESS.getDesc());
         }
 
+        log.warn("记录汽车订单失败, 订单信息:{}", JSON.toJSON(request));
         return RentalResult.fail(ResultMessageEnum.REQUEST_FAIL.getDesc());
     }
 

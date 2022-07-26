@@ -43,8 +43,8 @@ class CarRentalControllerTest {
         orderRequestAbnormal_1.setRentAmount(-1);
         orderRequestAbnormal_1.setUserId(2L);
         RentalResult<String> abnormalRentalResult1 = carRentalController.orderCar(orderRequestAbnormal_1);
-        AssertionErrors.assertEquals("异常租赁流程-租赁数量＜１失败", ResultMessageEnum.MIN_AMOUNT_INVALID.getDesc(),
-                abnormalRentalResult1.getCode());
+        AssertionErrors.assertEquals("异常租赁流程-租赁数量＜１失败",
+                ResultMessageEnum.MIN_AMOUNT_INVALID.getDesc() + 1, abnormalRentalResult1.getMessage());
 
         //异常租赁流程-租赁数量 > 可租赁数量
         OrderRequest orderRequestAbnormal_2 = new OrderRequest();
@@ -52,8 +52,8 @@ class CarRentalControllerTest {
         orderRequestAbnormal_2.setRentAmount(10000);
         orderRequestAbnormal_2.setUserId(2L);
         RentalResult<String> abnormalRentalResult2 = carRentalController.orderCar(orderRequestAbnormal_2);
-        AssertionErrors.assertEquals("异常租赁流程-租赁数量 >可租赁数量 失败", ResultMessageEnum.RENT_AMOUNT_INVALID.getDesc(),
-                abnormalRentalResult2.getMessage());
+        AssertionErrors.assertEquals("异常租赁流程-租赁数量 >可租赁数量 失败",
+                ResultMessageEnum.RENT_AMOUNT_INVALID.getDesc(), abnormalRentalResult2.getMessage());
 
         //异常租赁流程-租赁汽车不存在
         OrderRequest orderRequestAbnormal_3 = new OrderRequest();
@@ -61,7 +61,7 @@ class CarRentalControllerTest {
         orderRequestAbnormal_3.setRentAmount(1);
         orderRequestAbnormal_3.setUserId(2L);
         RentalResult<String> abnormalRentalResult3 = carRentalController.orderCar(orderRequestAbnormal_3);
-        AssertionErrors.assertEquals("异常租赁流程-租赁汽车不存在 失败", ResultMessageEnum.INVALID_CAR.getDesc(),
-                abnormalRentalResult3.getMessage());
+        AssertionErrors.assertEquals("异常租赁流程-租赁汽车不存在 失败",
+                ResultMessageEnum.INVALID_CAR.getDesc(), abnormalRentalResult3.getMessage());
     }
 }

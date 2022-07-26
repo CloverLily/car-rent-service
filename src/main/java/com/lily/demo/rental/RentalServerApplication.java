@@ -3,6 +3,7 @@ package com.lily.demo.rental;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @description 汽车租赁服务启动类
  * @Date 2022/07/25
  */
+@EnableAspectJAutoProxy(exposeProxy = true,proxyTargetClass = true)
 @EnableTransactionManagement
 @MapperScan(value = {"com.lily.demo.rental.dao"})
 @SpringBootApplication

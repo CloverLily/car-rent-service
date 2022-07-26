@@ -30,7 +30,7 @@ public class CarServiceImpl extends ServiceImpl<CarDAO, CarDO> implements CarSer
     @Override
     public List<CarDO> searchAvailableCar() {
         LambdaQueryWrapper<CarDO> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.lt(CarDO::getAmount, 0);
+        queryWrapper.gt(CarDO::getAmount, 0);
 
         return carDAO.selectList(queryWrapper);
     }

@@ -18,8 +18,8 @@ import java.util.Date;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@TableName("ORDER")
-public class OrderDO extends Model<OrderDO> {
+@TableName("RENTAL_ORDER")
+public class RentalOrderDO extends Model<RentalOrderDO> {
 
     private static final long serialVersionUID = 1L;
 
@@ -56,7 +56,7 @@ public class OrderDO extends Model<OrderDO> {
     /**
      * 备注
      */
-    private String remark;
+    private String reMark;
     /**
      * 创建时间
      */

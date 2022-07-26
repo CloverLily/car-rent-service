@@ -2,10 +2,10 @@ package com.lily.demo.rental.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lily.demo.rental.common.util.PrimaryBizIdGenerateUtil;
-import com.lily.demo.rental.dao.OrderDAO;
-import com.lily.demo.rental.model.entity.OrderDO;
+import com.lily.demo.rental.dao.RentalOrderDAO;
+import com.lily.demo.rental.model.entity.RentalOrderDO;
 import com.lily.demo.rental.model.vo.OrderRequest;
-import com.lily.demo.rental.service.OrderService;
+import com.lily.demo.rental.service.RentalOrderService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -20,11 +20,11 @@ import java.util.Objects;
  */
 @Slf4j
 @Service
-public class OrderServiceImpl extends ServiceImpl<OrderDAO, OrderDO>
-        implements OrderService {
+public class RentalOrderServiceImpl extends ServiceImpl<RentalOrderDAO, RentalOrderDO>
+        implements RentalOrderService {
 
     @Resource
-    private OrderDAO orderDAO;
+    private RentalOrderDAO orderDAO;
 
     /**
      * 租赁订单流水号前缀
@@ -39,13 +39,13 @@ public class OrderServiceImpl extends ServiceImpl<OrderDAO, OrderDO>
             return false;
         }
 
-        OrderDO model = buildOrderDO(request);
+        RentalOrderDO model = buildOrderDO(request);
         return orderDAO.insert(model) > 0;
     }
 
-    private OrderDO buildOrderDO(OrderRequest request) {
+    private RentalOrderDO buildOrderDO(OrderRequest request) {
         Date now = new Date();
-        OrderDO orderDO = OrderDO.builder()
+        RentalOrderDO orderDO = RentalOrderDO.builder()
                 .carId(request.getCarId())
                 .carName(request.getCarName())
                 .rentAmount(request.getRentAmount())

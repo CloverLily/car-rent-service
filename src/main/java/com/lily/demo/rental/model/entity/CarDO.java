@@ -44,7 +44,7 @@ public class CarDO extends Model<CarDO> {
     /**
      * 备注
      */
-    private String remark;
+    private String reMark;
     /**
      * 创建时间
      */

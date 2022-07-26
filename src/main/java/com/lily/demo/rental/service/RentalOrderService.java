@@ -7,7 +7,7 @@ import com.lily.demo.rental.model.vo.OrderRequest;
  * @description 汽车租赁订单表服务
  * @Date 2022/7/25
  */
-public interface OrderService {
+public interface RentalOrderService {
 
     /**
      * 租赁汽车

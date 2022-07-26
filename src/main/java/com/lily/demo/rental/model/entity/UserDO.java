@@ -19,7 +19,7 @@ import java.util.Date;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@TableName("User")
+@TableName("USER")
 public class UserDO extends Model<UserDO> {
 
     private static final long serialVersionUID = 1L;
@@ -41,7 +41,7 @@ public class UserDO extends Model<UserDO> {
     /**
      * 备注
      */
-    private String remark;
+    private String reMark;
     /**
      * 创建时间
      */
