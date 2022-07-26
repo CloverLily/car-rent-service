@@ -9,7 +9,9 @@ import com.lily.demo.rental.service.CarRentalService;
 import com.lily.demo.rental.service.CarService;
 import com.lily.demo.rental.service.OrderService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.aop.framework.AopContext;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -45,13 +47,26 @@ public class CarRentalServiceImpl implements CarRentalService {
             return verifyResult;
         }
 
+        return ((CarRentalServiceImpl)AopContext.currentProxy()).processCarOrder(request, carDO);
+    }
+
+    /**
+     * 处理一次租赁汽车订单
+     * @param request 租赁请求
+     * @param carDO 汽车信息
+     * @return 租赁结果
+     */
+    @Transactional(rollbackFor = Exception.class)
+    public RentalResult<String> processCarOrder(OrderRequest request, CarDO carDO) {
+        if (Objects.isNull(request) || Objects.isNull(carDO)) {
+            return RentalResult.fail(ResultMessageEnum.REQUEST_FAIL.getDesc());
+        }
+
         if (!carService.updateByCriteria(buildCarBO(request, carDO))) {
             return RentalResult.fail(ResultMessageEnum.REQUEST_FAIL.getDesc());
         }
 
-        if (Objects.nonNull(carDO)) {
-            request.setCarName(carDO.getName());
-        }
+        request.setCarName(carDO.getName());
         if (orderService.orderCar(request)) {
             return RentalResult.success(ResultMessageEnum.REQUEST_SUCCESS.getDesc());
         }
